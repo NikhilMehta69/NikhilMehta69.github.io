@@ -1,12 +1,131 @@
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
-	<script language="javascript" type="text/javascript" src="main.js"></script>
-	<script language="javascript" type="text/javascript" src="snake.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Quizzer</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f3f6fb;
+      color: #1b2330;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 0 16px 40px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(21, 36, 62, 0.08);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.75rem;
+    }
+
+    .muted {
+      color: #5f6b7b;
+      margin: 0;
+    }
+
+    #status {
+      font-weight: 600;
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
+    #questionCard {
+      display: none;
+    }
+
+    #questionText {
+      white-space: pre-wrap;
+      font-size: 1.1rem;
+      margin: 0 0 14px;
+      line-height: 1.45;
+    }
+
+    #answerInput {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccd6e3;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      border: none;
+      background: #006ee6;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+
+    button.secondary {
+      background: #4f5d75;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    #feedback {
+      margin-top: 8px;
+      font-weight: 600;
+      min-height: 1.2em;
+    }
+
+    .correct { color: #087a2f; }
+    .wrong { color: #b3122d; }
+
+    #summary {
+      display: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="card">
+      <h1>PDF Quizzer</h1>
+      <p class="muted">Upload a text-based PDF with numbered questions and an <strong>Answer Key</strong> (or <strong>Answers</strong>) section at the end.</p>
+      <input id="pdfInput" type="file" accept="application/pdf" />
+      <p id="status"></p>
+    </div>
 
+    <div id="questionCard" class="card">
+      <p id="progress" class="muted"></p>
+      <p id="questionText"></p>
+      <input id="answerInput" type="text" placeholder="Type your answer here..." />
+      <div>
+        <button id="checkBtn">Check answer</button>
+        <button id="nextBtn" class="secondary" disabled>Next question</button>
+      </div>
+      <p id="feedback"></p>
+    </div>
+
+    <div id="summary" class="card"></div>
+  </div>
+
+  <script type="module" src="main.js"></script>
 </body>
 </html>
